@@ -4,7 +4,6 @@ import com.chenmo.entity.Users;
 import com.chenmo.utils.SqlSessionFactoryUtils;
 import org.apache.ibatis.session.SqlSession;
 
-import java.util.Date;
 import java.util.List;
 
 public class UsersDAO {
@@ -84,5 +83,15 @@ public class UsersDAO {
         return user;
     }
 
+    public  void delUsers(Integer id){
+        try{
+            getSession().delete("delUser",id);
+            sqlSession.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+    }
 
 }

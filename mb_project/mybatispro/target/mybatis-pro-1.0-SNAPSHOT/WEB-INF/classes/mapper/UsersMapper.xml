@@ -7,12 +7,23 @@
 
  -->
 <mapper namespace="com.chenmo.entity.Users">
-    <select id="findUsers" resultType="com.chenmo.entity.Users">
+    <!--<select id="findUsers" resultType="com.chenmo.entity.Users"> -->
+    <select id="findUsers" resultMap="forUsers">
         SELECT * FROM  users
 
         <if test="id != null">
             WHERE id = #{id}
         </if>
+    </select>
+
+    <resultMap id="forUsers" type="com.chenmo.entity.Users">
+        <id property="id" column="id"></id>
+
+        <collection property="addresses" column="id" ofType="com.chenmo.entity.Address" select="getAddress"></collection>
+    </resultMap>
+
+    <select id="getAddress" resultType="com.chenmo.entity.Address">
+        SELECT  * FROM  address WHERE userid = #{id}
     </select>
 
     <sql id="user_fields">
@@ -44,7 +55,10 @@
         </set>
 
         where id = #{id}
-
     </update>
+
+    <delete id="delUser">
+        DELETE FROM  Users WHERE id = #{id}
+    </delete>
 
 </mapper>

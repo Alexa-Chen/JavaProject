@@ -1,6 +1,7 @@
 package com.chenmo.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Users {
 
@@ -17,6 +18,15 @@ public class Users {
     private Date lastLogin;
     private Integer userStatus;
     private String remark;
+    private List<Address> addresses;
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
 
     public Users(){
 
@@ -157,5 +167,23 @@ public class Users {
         this.remark = remark;
     }
 
-
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", userpass='" + userpass + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", lastLogin=" + lastLogin +
+                ", userStatus=" + userStatus +
+                ", remark='" + remark + '\'' +
+                ", addresses=" + addresses +
+                '}';
+    }
 }
